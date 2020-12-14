@@ -15,7 +15,8 @@ def convert(fileName,resolution='1080p'):
         resolution='640x360'
     elif resolution=='240p':
         resolution='436x250'
-    resize = ffmpeg.filter(stream,'scale', size=resolution, force_original_aspect_ratio='increase')
+    resize = ffmpeg.filter(stream,'scale', size=resolution)
+    # resize = ffmpeg.filter(stream,'scale', size=resolution, force_original_aspect_ratio='increase')
     out = ffmpeg.output(audio, resize, 'output/'+fileName+resolutionName+'.mp4')
     out = ffmpeg.overwrite_output(out)
     ffmpeg.run(out)
